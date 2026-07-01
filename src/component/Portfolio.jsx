@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import heroImage from "../assets/hero.jpg";
+import resume from "../assets/cv/resume.pdf";
 
 const NAV_LINKS = ["About", "Skills", "Projects", "Contact"];
 
@@ -12,15 +14,17 @@ const PROJECTS = [
     {
         title: "Expense Tracker website",
         description: "A real-time Expense tracker app which is used to track our expense through a lot of commodities.",
-        tags: ["HTML", "CSS", "JS"],
-        link: "https://github.com/abelzeleke0949-cell/ExpenseTracker.git",
+        tags: ["React", "+", "Tailwind CSS"],
+        link: "https://github.com/abelzeleke0949-cell/Exp.git",
+        liveLink: "https://exp-one-gules.vercel.app",
         accent: "#7C3AED",
     },
     {
         title: "To-Do-List App",
         description: "A Reminder App Which is used to show the events we were attended and will atended on the future with time and date.",
         tags: ["HTML", "CSS", "JS"],
-        link: "https://github.com/abelzeleke0949-cell/To_Do-List_APP.git",
+        link: "https://github.com/abelzeleke0949-cell/To_Do_List_APP.git",
+        liveLink: "https://to-do-list-app-6br5.vercel.app",
         accent: "#0EA5E9",
     },
     {
@@ -28,6 +32,7 @@ const PROJECTS = [
         description: "Fully Integrated E-commerce website with product details and payment options too.",
         tags: ["Node.js", "React", "Tailwind", "Mongodb"],
         link: "https://github.com/gulitgebeya03-ops/Gulit.git",
+        liveLink: "https://ecomerce-demo1.vercel.app",
         accent: "#10B981",
     },
 ];
@@ -77,7 +82,7 @@ function NavBar({ active, onNav }) {
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0A0A0F]/95 backdrop-blur border-b border-[#2D2D44]" : "bg-transparent"}`}>
             <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-16">
                 <span className="font-mono text-violet-400 text-sm tracking-widest font-semibold">abel.dev</span>
-                <ul className="hidden md:flex gap-8">
+                <ul className="hidden md:flex gap-8 items-center">
                     {NAV_LINKS.map(link => (
                         <li key={link}>
                             <button
@@ -88,6 +93,16 @@ function NavBar({ active, onNav }) {
                             </button>
                         </li>
                     ))}
+                    <li>
+                        <a
+                            href={resume}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-xs px-3 py-1.5 rounded-md bg-violet-700 hover:bg-violet-600 text-white transition-colors"
+                        >
+                            CV
+                        </a>
+                    </li>
                 </ul>
                 <button
                     onClick={() => setMenuOpen(o => !o)}
@@ -106,6 +121,14 @@ function NavBar({ active, onNav }) {
                             {link.toLowerCase()}
                         </button>
                     ))}
+                    <a
+                        href={resume}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block font-mono text-sm text-violet-400 hover:text-white py-3 tracking-wide"
+                    >
+                        CV ↗
+                    </a>
                 </div>
             )}
         </nav>
@@ -160,6 +183,11 @@ export default function Portfolio() {
                     <div className="absolute top-1/3 -left-32 w-96 h-96 rounded-full bg-violet-900/20 blur-3xl" />
                     <div className="absolute bottom-1/4 right-0 w-64 h-64 rounded-full bg-violet-800/10 blur-3xl" />
                 </div>
+                <img
+                    src={heroImage}
+                    alt="Abel Zeleke"
+                    className="absolute top-24 right-6 w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-violet-500/50 shadow-lg shadow-violet-900/30"
+                />
                 <p className="font-mono text-violet-500 text-sm tracking-widest mb-6">Hello, I'm</p>
                 <h1 className="text-5xl md:text-7xl font-bold leading-none tracking-tight mb-4">
                     Abel Zeleke
@@ -207,7 +235,7 @@ export default function Portfolio() {
                         <div className="aspect-square max-w-sm mx-auto bg-[#1A1A2E] border border-[#2D2D44] rounded-2xl flex items-center justify-center overflow-hidden">
                             <div className="p-8 font-mono text-sm text-left w-full">
                                 <p className="text-[#444466] mb-1">// pseudocode for my brain</p>
-                                <p className="text-violet-400">const <span className="text-[#F0F0F5]">alex</span> = {"{"}</p>
+                                <p className="text-violet-400">const <span className="text-[#F0F0F5]">abel</span> = {"{"}</p>
                                 <p className="ml-4 text-[#8888AA]">role: <span className="text-emerald-400">"web dev"</span>,</p>
                                 <p className="ml-4 text-[#8888AA]">loves: [</p>
                                 <p className="ml-8 text-emerald-400">"clean code",</p>
@@ -245,11 +273,10 @@ export default function Portfolio() {
             <Section id="projects" className="py-24">
                 <SectionLabel>Selected work</SectionLabel>
                 <div className="grid md:grid-cols-3 gap-6">
-                    {PROJECTS.map(({ title, description, tags, link, accent }) => (
-                        <a
+                    {PROJECTS.map(({ title, description, tags, link, liveLink, accent }) => (
+                        <div
                             key={title}
-                            href={link}
-                            className="group bg-[#1A1A2E] border border-[#2D2D44] hover:border-[#3D3D5A] rounded-xl p-6 flex flex-col transition-all duration-200 hover:-translate-y-1 cursor-pointer"
+                            className="group bg-[#1A1A2E] border border-[#2D2D44] hover:border-[#3D3D5A] rounded-xl p-6 flex flex-col transition-all duration-200 hover:-translate-y-1"
                         >
                             <div className="flex items-start justify-between mb-4">
                                 <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: accent + "22", border: `1px solid ${accent}44` }}>
@@ -263,14 +290,33 @@ export default function Portfolio() {
                             </div>
                             <h3 className="font-semibold text-base mb-2 text-[#F0F0F5]">{title}</h3>
                             <p className="text-sm text-[#8888AA] leading-relaxed flex-1 mb-5">{description}</p>
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-1.5 mb-4">
                                 {tags.map(t => (
                                     <span key={t} className="font-mono text-[10px] tracking-wide text-[#8888AA] bg-[#0A0A0F] border border-[#2D2D44] px-2 py-1 rounded">
                                         {t}
                                     </span>
                                 ))}
                             </div>
-                        </a>
+                            <div className="flex gap-2 mt-auto">
+                                <a
+                                    href={liveLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 text-center px-3 py-2 rounded-lg text-xs font-semibold transition-all hover:scale-105"
+                                    style={{ backgroundColor: accent, color: "#fff" }}
+                                >
+                                    Click me →
+                                </a>
+                                <a
+                                    href={link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 text-center px-3 py-2 border border-[#2D2D44] hover:border-violet-700 text-[#8888AA] hover:text-white rounded-lg text-xs font-medium transition-colors"
+                                >
+                                    Source codes ↗
+                                </a>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </Section>
@@ -285,7 +331,7 @@ export default function Portfolio() {
                     </p>
                     <div className="space-y-4">
                         {[
-                            { icon: "✉", label: "abelzeleke0949@gmail.com", href: "abelzeleke0949@gmail.com" },
+                            { icon: "✉", label: "abelzeleke0949@gmail.com", href: "mailto:abelzeleke0949@gmail.com" },
                             { icon: "🐙", label: "github.com/abelzeleke0949-cell", href: "https://github.com/abelzeleke0949-cell" },
                             { icon: "💼", label: "linkedin.com/in/abel-zeleke-611409372", href: "https://linkedin.com/in/abel-zeleke-611409372" },
                         ].map(({ icon, label, href }) => (
